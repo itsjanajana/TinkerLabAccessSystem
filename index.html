@@ -342,18 +342,22 @@
     </style>
 </head>
 <body>
-    <!-- Video Background -->
+    <!-- ===== VIDEO BACKGROUND ===== -->
     <div class="video-background">
         <video autoplay muted loop playsinline id="bg-video">
             <source src="videos/lab-background.mp4" type="video/mp4">
             <!-- Fallback image if video can't load -->
             <img src="images/lab-background-fallback.jpg" alt="Tinker Lab Background">
         </video>
-        <div class="video-overlay"></div>
     </div>
     
+    <!-- Semi-transparent overlay -->
+    <div class="video-overlay"></div>
+    
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="content-wrapper">
         <div class="container">
+            <!-- Your existing header -->
             <header>
                 <a href="#" class="logo">Tinker<span>Lab</span></a>
                 <nav>
@@ -364,7 +368,7 @@
                 </nav>
             </header>
             
-            <!-- Welcome Section -->
+            <!-- Your existing welcome section -->
             <section class="welcome-section">
                 <h1>Welcome to Tinker Lab</h1>
                 <p>Our advanced equipment management system provides seamless access to cutting-edge tools and resources for students, researchers, and faculty members.</p>
@@ -374,103 +378,30 @@
                 </div>
             </section>
             
-            <!-- System Statistics -->
+            <!-- Your existing stats grid -->
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">127</div>
-                    <div class="stat-label">Total Equipment</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">86</div>
-                    <div class="stat-label">Active Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">42</div>
-                    <div class="stat-label">Available Now</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">In Maintenance</div>
-                </div>
+                <!-- ... keep your existing stat cards ... -->
             </div>
             
-            <!-- Equipment Preview -->
+            <!-- Your existing equipment section -->
             <section class="equipment-section">
-                <div class="section-header">
-                    <h2>Featured Equipment</h2>
-                    <a href="catalog.html" class="btn btn-dark">View Full Catalog</a>
-                </div>
-                
-                <div class="equipment-grid">
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://via.placeholder.com/600x400?text=3D+Printer');"></div>
-                        <div class="equipment-details">
-                            <h3>Ultimaker S5</h3>
-                            <p>Professional-grade 3D printer with dual extrusion</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://via.placeholder.com/600x400?text=Oscilloscope');"></div>
-                        <div class="equipment-details">
-                            <h3>Digital Oscilloscope</h3>
-                            <p>200MHz, 4-channel digital storage oscilloscope</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://via.placeholder.com/600x400?text=CNC+Machine');"></div>
-                        <div class="equipment-details">
-                            <h3>CNC Router</h3>
-                            <p>Desktop CNC machine for wood and soft metals</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                </div>
+                <!-- ... keep your existing equipment cards ... -->
             </section>
             
-            <!-- Announcements -->
+            <!-- Your existing announcements section -->
             <section class="announcements-section">
-                <div class="section-header">
-                    <h2>Recent Announcements</h2>
-                    <a href="#" class="btn btn-dark">View All</a>
-                </div>
-                
-                <div class="announcements-grid">
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 15, 2023</div>
-                        <h3>New Laser Cutter Added</h3>
-                        <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training is required before use.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                    
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 10, 2023</div>
-                        <h3>Maintenance Schedule</h3>
-                        <p>All 3D printers will be unavailable June 20-22 for routine maintenance and calibration.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                    
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 5, 2023</div>
-                        <h3>Extended Lab Hours</h3>
-                        <p>The lab will now be open until 10 PM Monday through Friday during summer semester.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                </div>
+                <!-- ... keep your existing announcements ... -->
             </section>
         </div>
     </div>
 
+    <!-- ===== VIDEO HANDLING SCRIPT ===== -->
     <script>
-        // Video Background Handling
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('bg-video');
             const videoContainer = document.querySelector('.video-background');
             
-            // Ensure video plays
+            // 1. Try to play video
             function playVideo() {
                 video.play().catch(error => {
                     console.log("Video autoplay prevented, showing fallback");
@@ -478,7 +409,7 @@
                 });
             }
             
-            // Show fallback image
+            // 2. Fallback to image
             function showFallbackImage() {
                 const img = video.querySelector('img');
                 if (img) {
@@ -490,34 +421,66 @@
                 }
             }
             
-            // Mobile detection and fallback
+            // 3. Mobile detection
             if (window.innerWidth < 768) {
                 videoContainer.style.background = "url('images/lab-background-mobile.jpg') center/cover no-repeat";
                 video.style.display = 'none';
             } else {
-                // Desktop - try to play video
                 playVideo();
-                
-                // If video errors, show fallback
-                video.addEventListener('error', function() {
-                    showFallbackImage();
-                });
+                video.addEventListener('error', showFallbackImage);
             }
             
-            // Handle tab visibility changes
+            // 4. Handle tab visibility
             document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    video.pause();
-                } else {
-                    playVideo();
-                }
-            });
-            
-            // Safari sometimes needs this
-            window.addEventListener('pageshow', function() {
-                playVideo();
+                if (document.hidden) video.pause();
+                else playVideo();
             });
         });
     </script>
+    <style>
+        /* Video Background Styles */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    z-index: -1;
+}
+
+.content-wrapper {
+    background: rgba(255,255,255,0.95);
+    margin: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .content-wrapper {
+        margin: 0;
+        border-radius: 0;
+    }
+}
+     </style>
 </body>
 </html>
