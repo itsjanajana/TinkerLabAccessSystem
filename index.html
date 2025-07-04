@@ -3,181 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinker Lab - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Tinker Lab | Innovation Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1E88E5;
-            --secondary: #FFFFFF;
-            --accent: #0D47A1;
-            --text: #212121;
-            --bg: #F5F5F5;
+            --primary-dark: #0D47A1;
+            --white: #FFFFFF;
+            --black: #000000;
+            --gray: #F5F5F5;
+            --dark-gray: #212121;
         }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
+        
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            color: var(--white);
+            overflow-x: hidden;
         }
-        header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .welcome-section {
-            text-align: center;
-            margin: 3rem 0;
-            animation: fadeInUp 0.8s ease-out;
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
         }
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s ease;
+        
+        .logo span {
+            color: var(--primary);
         }
-        .stat-card:hover {
-            transform: translateY(-15px);
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
         }
-        .equipment-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
+        
+        nav a:hover {
+            color: var(--primary);
         }
-        .equipment-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            animation: cardAppear 0.5s ease-out;
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.2s;
             animation-fill-mode: both;
         }
-         .equipment-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-          }
-        .equipment-card:nth-child(1) { animation-delay: 0.2s; }
-        .equipment-card:nth-child(2) { animation-delay: 0.4s; }
-        .equipment-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+        
         .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 2rem;
             border-radius: 4px;
             text-decoration: none;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
-        .btn:hover {
-            background: var(--accent);
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
         }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s;
+            animation-fill-mode: both;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        @keyframes cardAppear {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Tinker Lab Access System</h1>
-    </header>
-    <div class="container">
-        <section class="welcome-section">
-            <h2>Welcome to Tinker Lab</h2>
-            <p>Access and manage lab equipment with our streamlined system</p>
-            <div class="btn-group" style="margin-top: 1rem;">
-                <a href="login.html" class="btn">Login</a>
-                <a href="login.html?register=true" class="btn" style="background: var(--accent); margin-left: 1rem;">Register</a>
-            </div>
-        </section>
-
-        <section class="stats-grid">
-            <div class="stat-card">
-                <h3>Total Equipment</h3>
-                <p class="stat-value">127</p>
-            </div>
-            <div class="stat-card">
-                <h3>Active Users</h3>
-                <p class="stat-value">86</p>
-            </div>
-            <div class="stat-card">
-                <h3>Available Now</h3>
-                <p class="stat-value">42</p>
-            </div>
-            <div class="stat-card">
-                <h3>In Maintenance</h3>
-                <p class="stat-value">5</p>
-            </div>
-        </section>
-
-        <h2 style="text-align: center; margin: 2rem 0;">Featured Equipment</h2>
-        <div class="equipment-preview">
-            <div class="equipment-card">
-                <img src="https://www.machines-3d.com/images/Image/Imprimante-3D-BAMBU-LAB-X1-Carbon-Combo-BAMBULAB-X1-1-3.png" alt="3D Printer" style="width: 100%;">
-                <div style="padding: 1rem;">
-                    <h3>Ultimaker S5</h3>
-                    <p>Professional-grade 3D printer with dual extrusion</p>
-                    <a href="catalog.html" class="btn" style="display: block; text-align: center; margin-top: 1rem;">View Details</a>
-                </div>
-            </div>
-            <div class="equipment-card">
-                <img src="https://tse1.mm.bing.net/th/id/OIP.eZ2mibp4SBudqkhLtoy7FgHaE7?pid=Api&P=0&h=180" alt="Oscilloscope" style="width: 100%;">
-                <div style="padding: 1rem;">
-                    <h3>Digital Oscilloscope</h3>
-                    <p>200MHz, 4-channel digital storage oscilloscope</p>
-                    <a href="catalog.html" class="btn" style="display: block; text-align: center; margin-top: 1rem;">View Details</a>
-                </div>
-            </div>
-            <div class="equipment-card">
-                <img src="https://tse2.mm.bing.net/th/id/OIP.9-0sb1BdQEQ9Qk3Ch6zr3gHaEK?pid=Api&P=0&h=180" alt="CNC Machine" style="width: 100%;">
-                <div style="padding: 1rem;">
-                    <h3>CNC Router</h3>
-                    <p>Desktop CNC machine for wood and soft metals</p>
-                    <a href="catalog.html" class="btn" style="display: block; text-align: center; margin-top: 1rem;">View Details</a>
-                </div>
-            </div>
-        </div>
-
-        <section style="background: white; padding: 2rem; border-radius: 8px; margin-top: 3rem;">
-            <h2 style="margin-bottom: 1rem;">Recent Announcements</h2>
-            <div style="border-left: 3px solid var(--primary); padding-left: 1rem;">
-                <h3>New Laser Cutter Added</h3>
-                <p style="color: #666; margin: 0.5rem 0;">June 15, 2023</p>
-                <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training required.</p>
-            </div>
-            <div style="border-left: 3px solid var(--primary); padding-left: 1rem; margin-top: 1.5rem;">
-                <h3>Maintenance Schedule</h3>
-                <p style="color: #666; margin: 0.5rem 0;">June 10, 2023</p>
-                <p>All 3D printers will be unavailable June 20-22 for routine maintenance.</p>
-            </div>
-        </section>
-
-        <div style="text-align: center; margin: 3rem 0;">
-            <a href="catalog.html" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem;">View Full Equipment Catalog</a>
-        </div>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <!-- Replace with your actual video file -->
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-computer-circuit-board-12232-large.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
     </div>
+    
+    <div class="container">
+        <header>
+            <a href="#" class="logo">Tinker<span>Lab</span></a>
+            <nav>
+                <a href="#">Home</a>
+                <a href="catalog.html">Equipment</a>
+                <a href="#">About</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1>Innovate. Create. <span style="color: var(--primary)">Experiment.</span></h1>
+            <p>Access cutting-edge lab equipment and tools for your research and projects. Our advanced reservation system ensures seamless equipment management for students and faculty.</p>
+            
+            <div class="cta-buttons">
+                <a href="catalog.html" class="btn btn-primary">Browse Equipment</a>
+                <a href="login.html" class="btn btn-outline">Member Login</a>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">127+</span>
+                    <span class="stat-label">Equipment Items</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">86</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Access</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Video fallback for mobile
+        if (window.innerWidth < 768) {
+            document.querySelector('.video-background').style.background = "url('https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat";
+            document.querySelector('.video-background video').style.display = "none";
+        }
+        
+        // Pause video when tab is inactive
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.querySelector('video').pause();
+            } else {
+                document.querySelector('video').play();
+            }
+        });
+    </script>
 </body>
 </html>
