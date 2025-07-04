@@ -423,127 +423,136 @@
         </section>
         
 <!-- Announcements -->
-<section class="announcements fade-in delay-2">
-    <h2 style="margin-bottom: 1.5rem; color: var(--primary); text-align: center; font-size: 2rem;">Latest Updates</h2>
+<!-- Announcements -->
+<section class="announcements-section fade-in delay-2">
+    <div class="section-header">
+        <h2>Recent Announcements</h2>
+        <a href="#" class="btn btn-dark">View All</a>
+    </div>
     
-    <div class="announcement-container">
+    <div class="announcements-grid">
         <div class="announcement-card">
-            <div class="announcement-header" style="background: linear-gradient(135deg, #1E88E5 0%, #0D47A1 100%);">
-                <div class="announcement-date">June 15, 2023</div>
-                <div class="announcement-badge">New</div>
-            </div>
-            <div class="announcement-body">
-                <h3>New Laser Cutter Added</h3>
-                <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training is required before use.</p>
-                <a href="#" class="announcement-link">Learn more →</a>
+            <div class="announcement-date" style="color: var(--primary);">June 15, 2023</div>
+            <h3>New Laser Cutter Added</h3>
+            <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training is required before use.</p>
+            <div class="announcement-footer">
+                <span class="badge" style="background: #E3F2FD; color: var(--primary-dark);">New Equipment</span>
+                <a href="#" class="read-more">Read more →</a>
             </div>
         </div>
         
         <div class="announcement-card">
-            <div class="announcement-header" style="background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);">
-                <div class="announcement-date">June 10, 2023</div>
-                <div class="announcement-badge">Alert</div>
-            </div>
-            <div class="announcement-body">
-                <h3>Maintenance Schedule</h3>
-                <p>All 3D printers will be unavailable June 20-22 for routine maintenance and calibration.</p>
-                <a href="#" class="announcement-link">View schedule →</a>
+            <div class="announcement-date" style="color: var(--primary);">June 10, 2023</div>
+            <h3>Maintenance Schedule</h3>
+            <p>All 3D printers will be unavailable June 20-22 for routine maintenance and calibration.</p>
+            <div class="announcement-footer">
+                <span class="badge" style="background: #FFF8E1; color: #F57F17;">Important</span>
+                <a href="#" class="read-more">Read more →</a>
             </div>
         </div>
         
         <div class="announcement-card">
-            <div class="announcement-header" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
-                <div class="announcement-date">June 5, 2023</div>
-                <div class="announcement-badge">Update</div>
-            </div>
-            <div class="announcement-body">
-                <h3>Extended Lab Hours</h3>
-                <p>The lab will now be open until 10 PM Monday through Friday during summer semester.</p>
-                <a href="#" class="announcement-link">See hours →</a>
+            <div class="announcement-date" style="color: var(--primary);">June 5, 2023</div>
+            <h3>Extended Lab Hours</h3>
+            <p>The lab will now be open until 10 PM Monday through Friday during summer semester.</p>
+            <div class="announcement-footer">
+                <span class="badge" style="background: #E8F5E9; color: #2E7D32;">Update</span>
+                <a href="#" class="read-more">Read more →</a>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-    /* Add these styles to your existing CSS */
-    .announcements {
+    /* Announcements Section - Matching Featured Equipment Style */
+    .announcements-section {
+        background: rgba(255,255,255,0.95);
+        color: var(--dark-gray);
+        padding: 3rem;
+        border-radius: 12px;
         margin: 4rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-    
-    .announcement-container {
+
+    .announcements-section h2 {
+        color: var(--primary-dark);
+    }
+
+    .announcements-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1.5rem;
     }
-    
+
     .announcement-card {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: var(--white);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
-    
+
     .announcement-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    
-    .announcement-header {
-        padding: 1rem 1.5rem;
-        color: white;
+
+    .announcement-date {
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .announcement-card h3 {
+        font-size: 1.2rem;
+        color: var(--dark-gray);
+        margin-bottom: 0.8rem;
+    }
+
+    .announcement-card p {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .announcement-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: auto;
     }
-    
-    .announcement-date {
-        font-size: 0.9rem;
-        opacity: 0.9;
-    }
-    
-    .announcement-badge {
-        background: rgba(255,255,255,0.2);
+
+    .badge {
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 500;
     }
-    
-    .announcement-body {
-        padding: 1.5rem;
-        color: var(--white);
-    }
-    
-    .announcement-body h3 {
-        color: var(--primary-dark);
-        margin-bottom: 0.8rem;
-        font-size: 1.3rem;
-    }
-    
-    .announcement-body p {
-        color: #666;
-        margin-bottom: 1.2rem;
-        line-height: 1.6;
-    }
-    
-    .announcement-link {
+
+    .read-more {
         color: var(--primary);
         text-decoration: none;
+        font-size: 0.9rem;
         font-weight: 500;
-        display: inline-block;
-        transition: transform 0.3s ease;
+        transition: color 0.3s ease;
     }
-    
-    .announcement-link:hover {
+
+    .read-more:hover {
         color: var(--primary-dark);
-        transform: translateX(5px);
     }
-    
+
     @media (max-width: 768px) {
-        .announcement-container {
+        .announcements-grid {
             grid-template-columns: 1fr;
+        }
+        
+        .announcements-section {
+            padding: 2rem 1rem;
         }
     }
 </style>
