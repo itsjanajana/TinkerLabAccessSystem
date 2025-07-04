@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinker Lab | Home</title>
+    <title>Tinker Lab | Innovation Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -23,7 +23,7 @@
         
         body {
             color: var(--text);
-            background-color: var(--white);
+            min-height: 100vh;
             overflow-x: hidden;
         }
         
@@ -34,7 +34,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -2;
             overflow: hidden;
         }
         
@@ -46,27 +46,28 @@
         }
         
         .video-overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.2);
+            z-index: -1;
         }
         
+        /* Main Content */
         .content-wrapper {
-            position: relative;
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.97);
             margin: 2rem;
             border-radius: 12px;
             box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            position: relative;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            position: relative;
         }
         
         /* Header */
@@ -201,7 +202,7 @@
             height: 180px;
             background-size: cover;
             background-position: center;
-            background-color: #f0f8ff; /* Very light blue */
+            background-color: #f0f8ff;
         }
         
         .equipment-details {
@@ -342,7 +343,7 @@
     </style>
 </head>
 <body>
-    <!-- ===== VIDEO BACKGROUND ===== -->
+    <!-- Video Background -->
     <div class="video-background">
         <video autoplay muted loop playsinline id="bg-video">
             <source src="videos/lab-background.mp4" type="video/mp4">
@@ -354,10 +355,9 @@
     <!-- Semi-transparent overlay -->
     <div class="video-overlay"></div>
     
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- Main Content -->
     <div class="content-wrapper">
         <div class="container">
-            <!-- Your existing header -->
             <header>
                 <a href="#" class="logo">Tinker<span>Lab</span></a>
                 <nav>
@@ -368,7 +368,7 @@
                 </nav>
             </header>
             
-            <!-- Your existing welcome section -->
+            <!-- Welcome Section -->
             <section class="welcome-section">
                 <h1>Welcome to Tinker Lab</h1>
                 <p>Our advanced equipment management system provides seamless access to cutting-edge tools and resources for students, researchers, and faculty members.</p>
@@ -378,47 +378,121 @@
                 </div>
             </section>
             
-            <!-- Your existing stats grid -->
+            <!-- System Statistics -->
             <div class="stats-grid">
-                <!-- ... keep your existing stat cards ... -->
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Total Equipment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">86</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">Available Now</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">In Maintenance</div>
+                </div>
             </div>
             
-            <!-- Your existing equipment section -->
+            <!-- Equipment Preview -->
             <section class="equipment-section">
-                <!-- ... keep your existing equipment cards ... -->
+                <div class="section-header">
+                    <h2>Featured Equipment</h2>
+                    <a href="catalog.html" class="btn btn-dark">View Full Catalog</a>
+                </div>
+                
+                <div class="equipment-grid">
+                    <!-- 3D Printer -->
+                    <div class="equipment-card">
+                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9aabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                        <div class="equipment-details">
+                            <h3>Ultimaker S5 3D Printer</h3>
+                            <p>Industrial-grade dual extrusion 3D printer with 330 × 240 × 300 mm build volume</p>
+                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Oscilloscope -->
+                    <div class="equipment-card">
+                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                        <div class="equipment-details">
+                            <h3>Rigol DS1204Z Oscilloscope</h3>
+                            <p>4-channel digital oscilloscope with 200MHz bandwidth and 12MPts memory</p>
+                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <!-- CNC Machine -->
+                    <div class="equipment-card">
+                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                        <div class="equipment-details">
+                            <h3>Shapeoko Pro CNC Router</h3>
+                            <p>Desktop CNC machine with 33" × 33" work area for metals, woods, and plastics</p>
+                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
+                        </div>
+                    </div>
+                </div>
             </section>
             
-            <!-- Your existing announcements section -->
+            <!-- Announcements -->
             <section class="announcements-section">
-                <!-- ... keep your existing announcements ... -->
+                <div class="section-header">
+                    <h2>Recent Announcements</h2>
+                    <a href="#" class="btn btn-dark">View All</a>
+                </div>
+                
+                <div class="announcements-grid">
+                    <div class="announcement-card">
+                        <div class="announcement-date">June 15, 2023</div>
+                        <h3>New Laser Cutter Added</h3>
+                        <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training is required before use.</p>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                    
+                    <div class="announcement-card">
+                        <div class="announcement-date">June 10, 2023</div>
+                        <h3>Maintenance Schedule</h3>
+                        <p>All 3D printers will be unavailable June 20-22 for routine maintenance and calibration.</p>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                    
+                    <div class="announcement-card">
+                        <div class="announcement-date">June 5, 2023</div>
+                        <h3>Extended Lab Hours</h3>
+                        <p>The lab will now be open until 10 PM Monday through Friday during summer semester.</p>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
 
-    <!-- ===== VIDEO HANDLING SCRIPT ===== -->
     <script>
+        // Robust video handling
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('bg-video');
             const videoContainer = document.querySelector('.video-background');
             
             // 1. Try to play video
             function playVideo() {
-                video.play().catch(error => {
-                    console.log("Video autoplay prevented, showing fallback");
-                    showFallbackImage();
-                });
+                const promise = video.play();
+                
+                if (promise !== undefined) {
+                    promise.catch(error => {
+                        console.log("Video autoplay prevented:", error);
+                        showFallbackImage();
+                    });
+                }
             }
             
             // 2. Fallback to image
             function showFallbackImage() {
-                const img = video.querySelector('img');
-                if (img) {
-                    video.style.display = 'none';
-                    img.style.display = 'block';
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'cover';
-                }
+                videoContainer.style.background = "url('images/lab-background-fallback.jpg') center/cover no-repeat";
+                video.style.display = 'none';
             }
             
             // 3. Mobile detection
@@ -426,61 +500,25 @@
                 videoContainer.style.background = "url('images/lab-background-mobile.jpg') center/cover no-repeat";
                 video.style.display = 'none';
             } else {
+                // Desktop - try to play video
                 playVideo();
-                video.addEventListener('error', showFallbackImage);
+                
+                // If video errors, show fallback
+                video.addEventListener('error', function() {
+                    console.log("Video loading error");
+                    showFallbackImage();
+                });
             }
             
             // 4. Handle tab visibility
             document.addEventListener('visibilitychange', function() {
-                if (document.hidden) video.pause();
-                else playVideo();
+                if (document.hidden) {
+                    video.pause();
+                } else {
+                    playVideo();
+                }
             });
         });
     </script>
-    <style>
-        /* Video Background Styles */
-.video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    overflow: hidden;
-}
-
-.video-background video {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-}
-
-.video-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.2);
-    z-index: -1;
-}
-
-.content-wrapper {
-    background: rgba(255,255,255,0.95);
-    margin: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.1);
-    position: relative;
-}
-
-/* Mobile adjustment */
-@media (max-width: 768px) {
-    .content-wrapper {
-        margin: 0;
-        border-radius: 0;
-    }
-}
-     </style>
 </body>
 </html>
