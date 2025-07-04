@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinker Lab | Innovation Hub</title>
+    <title>Tinker Lab | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1E88E5;
             --primary-dark: #0D47A1;
             --white: #FFFFFF;
-            --black: #000000;
-            --text: #212121;
+            --black: #121212;
+            --light-bg: #F8FAFC;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         * {
@@ -22,73 +23,38 @@
         }
         
         body {
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Video Background */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-        
-        .video-background video {
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-        
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.2);
-            z-index: -1;
-        }
-        
-        /* Main Content */
-        .content-wrapper {
-            background: rgba(255,255,255,0.97);
-            margin: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
-            position: relative;
+            color: var(--black);
+            background-color: var(--light-bg);
+            line-height: 1.6;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 2rem;
         }
         
         /* Header */
         header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         
         .logo {
             font-size: 1.8rem;
             font-weight: 600;
-            color: var(--black);
+            color: var(--primary-dark);
             text-decoration: none;
-        }
-        
-        .logo span {
-            color: var(--primary);
         }
         
         nav a {
@@ -96,53 +62,68 @@
             text-decoration: none;
             margin-left: 2rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
         }
         
         nav a:hover {
             color: var(--primary);
         }
         
-        /* Welcome Section */
-        .welcome-section {
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
             text-align: center;
-            padding: 4rem 0;
-            max-width: 800px;
-            margin: 0 auto;
         }
         
-        .welcome-section h1 {
-            font-size: 3rem;
+        .hero h1 {
+            font-size: 2.8rem;
             margin-bottom: 1.5rem;
-            line-height: 1.3;
+            color: var(--primary-dark);
         }
         
-        .welcome-section p {
+        .hero p {
             font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--black);
         }
         
-        /* Stats Grid */
-        .stats-grid {
+        /* Stats */
+        .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            margin: 4rem 0;
+            margin: 3rem 0;
         }
         
         .stat-card {
             background: var(--white);
-            border-radius: 8px;
             padding: 2rem;
+            border-radius: 8px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
         }
         
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.1);
         }
         
         .stat-number {
@@ -157,13 +138,9 @@
             color: var(--black);
         }
         
-        /* Equipment Preview */
-        .equipment-section {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
+        /* Equipment Section */
+        .section {
             margin: 4rem 0;
-            border: 2px solid var(--primary);
         }
         
         .section-header {
@@ -173,7 +150,7 @@
             margin-bottom: 2rem;
         }
         
-        .section-header h2 {
+        .section-title {
             font-size: 1.8rem;
             color: var(--primary-dark);
         }
@@ -188,13 +165,12 @@
             background: var(--white);
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
-            border: 2px solid rgba(0,0,0,0.1);
         }
         
         .equipment-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
             box-shadow: 0 10px 20px rgba(30, 136, 229, 0.1);
         }
         
@@ -202,35 +178,27 @@
             height: 180px;
             background-size: cover;
             background-position: center;
-            background-color: #f0f8ff;
+            background-color: #E3F2FD;
         }
         
         .equipment-details {
             padding: 1.5rem;
         }
         
-        .equipment-details h3 {
+        .equipment-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
             color: var(--black);
         }
         
-        .equipment-details p {
+        .equipment-desc {
             font-size: 0.9rem;
             margin-bottom: 1rem;
-            color: var(--black);
+            color: #555;
         }
         
         /* Announcements */
-        .announcements-section {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            margin: 4rem 0;
-            border: 2px solid var(--primary);
-        }
-        
-        .announcements-grid {
+        .announcement-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
@@ -240,53 +208,50 @@
             background: var(--white);
             border-radius: 8px;
             padding: 1.5rem;
+            box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
-            border: 2px solid rgba(0,0,0,0.1);
         }
         
         .announcement-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.1);
         }
         
         .announcement-date {
             font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
             color: var(--primary);
+            margin-bottom: 0.5rem;
         }
         
-        .announcement-card h3 {
+        .announcement-title {
             font-size: 1.2rem;
-            color: var(--black);
             margin-bottom: 0.8rem;
+            color: var(--black);
         }
         
-        .announcement-card p {
+        .announcement-text {
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            color: var(--black);
+            color: #555;
         }
         
         /* Buttons */
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
         .btn-primary {
-            background-color: var(--primary);
+            background: var(--primary);
             color: var(--white);
             border: 2px solid var(--primary);
         }
         
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background: var(--primary-dark);
             border-color: var(--primary-dark);
         }
         
@@ -297,28 +262,17 @@
         }
         
         .btn-outline:hover {
-            background-color: var(--primary);
+            background: var(--primary);
             color: var(--white);
-        }
-        
-        .btn-dark {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            border: 2px solid var(--primary-dark);
-        }
-        
-        .btn-dark:hover {
-            background-color: var(--primary);
-            border-color: var(--primary);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .stats-grid {
+            .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .welcome-section h1 {
+            .hero h1 {
                 font-size: 2.2rem;
             }
             
@@ -327,198 +281,130 @@
                 margin-top: 1rem;
             }
             
-            .equipment-section, .announcements-section {
-                padding: 2rem 1rem;
-            }
-            
             nav {
                 display: none;
-            }
-            
-            .content-wrapper {
-                margin: 0;
-                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Video Background -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline id="bg-video">
-            <source src="videos/lab-background.mp4" type="video/mp4">
-            <!-- Fallback image if video can't load -->
-            <img src="images/lab-background-fallback.jpg" alt="Tinker Lab Background">
-        </video>
-    </div>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Tinker<span>Lab</span></a>
+            <nav>
+                <a href="#">Home</a>
+                <a href="catalog.html">Equipment</a>
+                <a href="#">About</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
     
-    <!-- Semi-transparent overlay -->
-    <div class="video-overlay"></div>
-    
-    <!-- Main Content -->
-    <div class="content-wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <header>
-                <a href="#" class="logo">Tinker<span>Lab</span></a>
-                <nav>
-                    <a href="#">Home</a>
-                    <a href="catalog.html">Equipment</a>
-                    <a href="#">About</a>
-                    <a href="login.html">Login</a>
-                </nav>
-            </header>
-            
-            <!-- Welcome Section -->
-            <section class="welcome-section">
-                <h1>Welcome to Tinker Lab</h1>
-                <p>Our advanced equipment management system provides seamless access to cutting-edge tools and resources for students, researchers, and faculty members.</p>
-                <div>
-                    <a href="login.html" class="btn btn-primary">Login</a>
-                    <a href="login.html?register=true" class="btn btn-outline">Register</a>
-                </div>
-            </section>
-            
-            <!-- System Statistics -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">127</div>
-                    <div class="stat-label">Total Equipment</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">86</div>
-                    <div class="stat-label">Active Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">42</div>
-                    <div class="stat-label">Available Now</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">In Maintenance</div>
-                </div>
+            <h1>Welcome to Tinker Lab</h1>
+            <p>Access cutting-edge equipment and tools for your research and projects through our advanced reservation system.</p>
+            <div>
+                <a href="login.html" class="btn btn-primary">Login</a>
+                <a href="login.html?register=true" class="btn btn-outline">Register</a>
             </div>
-            
-            <!-- Equipment Preview -->
-            <section class="equipment-section">
-                <div class="section-header">
-                    <h2>Featured Equipment</h2>
-                    <a href="catalog.html" class="btn btn-dark">View Full Catalog</a>
-                </div>
-                
-                <div class="equipment-grid">
-                    <!-- 3D Printer -->
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9aabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                        <div class="equipment-details">
-                            <h3>Ultimaker S5 3D Printer</h3>
-                            <p>Industrial-grade dual extrusion 3D printer with 330 × 240 × 300 mm build volume</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Oscilloscope -->
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                        <div class="equipment-details">
-                            <h3>Rigol DS1204Z Oscilloscope</h3>
-                            <p>4-channel digital oscilloscope with 200MHz bandwidth and 12MPts memory</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <!-- CNC Machine -->
-                    <div class="equipment-card">
-                        <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-                        <div class="equipment-details">
-                            <h3>Shapeoko Pro CNC Router</h3>
-                            <p>Desktop CNC machine with 33" × 33" work area for metals, woods, and plastics</p>
-                            <a href="catalog.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Announcements -->
-            <section class="announcements-section">
-                <div class="section-header">
-                    <h2>Recent Announcements</h2>
-                    <a href="#" class="btn btn-dark">View All</a>
-                </div>
-                
-                <div class="announcements-grid">
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 15, 2023</div>
-                        <h3>New Laser Cutter Added</h3>
-                        <p>We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training is required before use.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                    
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 10, 2023</div>
-                        <h3>Maintenance Schedule</h3>
-                        <p>All 3D printers will be unavailable June 20-22 for routine maintenance and calibration.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                    
-                    <div class="announcement-card">
-                        <div class="announcement-date">June 5, 2023</div>
-                        <h3>Extended Lab Hours</h3>
-                        <p>The lab will now be open until 10 PM Monday through Friday during summer semester.</p>
-                        <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
-                    </div>
-                </div>
-            </section>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">127</div>
+                <div class="stat-label">Total Equipment</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">86</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">42</div>
+                <div class="stat-label">Available Now</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">In Maintenance</div>
+            </div>
         </div>
     </div>
-
-    <script>
-        // Robust video handling
-        document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('bg-video');
-            const videoContainer = document.querySelector('.video-background');
+    
+    <!-- Equipment Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Equipment</h2>
+                <a href="catalog.html" class="btn btn-outline">View All</a>
+            </div>
             
-            // 1. Try to play video
-            function playVideo() {
-                const promise = video.play();
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9aabf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="equipment-details">
+                        <h3 class="equipment-title">Ultimaker S5 3D Printer</h3>
+                        <p class="equipment-desc">Professional dual-extrusion 3D printer with large build volume</p>
+                        <a href="catalog.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">View Details</a>
+                    </div>
+                </div>
                 
-                if (promise !== undefined) {
-                    promise.catch(error => {
-                        console.log("Video autoplay prevented:", error);
-                        showFallbackImage();
-                    });
-                }
-            }
-            
-            // 2. Fallback to image
-            function showFallbackImage() {
-                videoContainer.style.background = "url('images/lab-background-fallback.jpg') center/cover no-repeat";
-                video.style.display = 'none';
-            }
-            
-            // 3. Mobile detection
-            if (window.innerWidth < 768) {
-                videoContainer.style.background = "url('images/lab-background-mobile.jpg') center/cover no-repeat";
-                video.style.display = 'none';
-            } else {
-                // Desktop - try to play video
-                playVideo();
+                <div class="equipment-card">
+                    <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="equipment-details">
+                        <h3 class="equipment-title">Digital Oscilloscope</h3>
+                        <p class="equipment-desc">4-channel 200MHz digital storage oscilloscope</p>
+                        <a href="catalog.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">View Details</a>
+                    </div>
+                </div>
                 
-                // If video errors, show fallback
-                video.addEventListener('error', function() {
-                    console.log("Video loading error");
-                    showFallbackImage();
-                });
-            }
+                <div class="equipment-card">
+                    <div class="equipment-image" style="background-image: url('https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="equipment-details">
+                        <h3 class="equipment-title">CNC Router</h3>
+                        <p class="equipment-desc">Precision desktop CNC for wood and soft metals</p>
+                        <a href="catalog.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Announcements -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recent Announcements</h2>
+                <a href="#" class="btn btn-outline">View All</a>
+            </div>
             
-            // 4. Handle tab visibility
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    video.pause();
-                } else {
-                    playVideo();
-                }
-            });
-        });
-    </script>
+            <div class="announcement-grid">
+                <div class="announcement-card">
+                    <div class="announcement-date">June 15, 2023</div>
+                    <h3 class="announcement-title">New Laser Cutter Installed</h3>
+                    <p class="announcement-text">We've added a new 60W CO2 laser cutter to our equipment inventory. Safety training required.</p>
+                    <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                </div>
+                
+                <div class="announcement-card">
+                    <div class="announcement-date">June 10, 2023</div>
+                    <h3 class="announcement-title">Maintenance Schedule</h3>
+                    <p class="announcement-text">3D printers will be unavailable June 20-22 for routine maintenance.</p>
+                    <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                </div>
+                
+                <div class="announcement-card">
+                    <div class="announcement-date">June 5, 2023</div>
+                    <h3 class="announcement-title">Extended Summer Hours</h3>
+                    <p class="announcement-text">Lab now open until 10PM Monday-Friday during summer semester.</p>
+                    <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
